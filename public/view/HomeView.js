@@ -15,6 +15,30 @@ export class HomeView extends AbstractView {
             return;
         }
         console.log('HomeView.onMount() is called');
+    
+        // Restore Odd/Even selection
+        const savedOddEven = localStorage.getItem("selectedOddEven");
+        if (savedOddEven) {
+            document.querySelector(`input[name="OE"][value="${savedOddEven}"]`).checked = true;
+        }
+    
+        // Restore Odd/Even bet amount
+        const savedOddEvenBet = localStorage.getItem("selectedOddEvenBet");
+        if (savedOddEvenBet) {
+            document.getElementById("odd_even_bet").value = savedOddEvenBet;
+        }
+    
+        // Restore Range selection
+        const savedRange = localStorage.getItem("selectedRange");
+        if (savedRange) {
+            document.querySelector(`input[name="Range"][value="${savedRange}"]`).checked = true;
+        }
+    
+        // Restore Range bet amount
+        const savedRangeBet = localStorage.getItem("selectedRangeBet");
+        if (savedRangeBet) {
+            document.getElementById("range_bet").value = savedRangeBet;
+        }
     }
 
     async updateView() {
@@ -72,6 +96,8 @@ export class HomeView extends AbstractView {
                 betSelects.forEach(select => { select.disabled = true; });
                 break;
         }
+
+        this.restoreSelections(viewWrapper);
 
         return viewWrapper;
     }
@@ -144,5 +170,35 @@ export class HomeView extends AbstractView {
         }
         console.log('HomeView.onLeave() is called');
     }
+    restoreSelections(viewWrapper) {
+        // Restore Odd/Even selection
+        const savedOddEven = localStorage.getItem("selectedOddEven");
+        if (savedOddEven) {
+            const radio = viewWrapper.querySelector(`input[name="OE"][value="${savedOddEven}"]`);
+            if (radio) radio.checked = true;
+        }
+    
+        // Restore Odd/Even bet amount
+        const savedOddEvenBet = localStorage.getItem("selectedOddEvenBet");
+        if (savedOddEvenBet) {
+            const betSelect = viewWrapper.querySelector("#odd_even_bet");
+            if (betSelect) betSelect.value = savedOddEvenBet;
+        }
+    
+        // Restore Range selection
+        const savedRange = localStorage.getItem("selectedRange");
+        if (savedRange) {
+            const radio = viewWrapper.querySelector(`input[name="Range"][value="${savedRange}"]`);
+            if (radio) radio.checked = true;
+        }
+    
+        // Restore Range bet amount
+        const savedRangeBet = localStorage.getItem("selectedRangeBet");
+        if (savedRangeBet) {
+            const betSelect = viewWrapper.querySelector("#range_bet");
+            if (betSelect) betSelect.value = savedRangeBet;
+        }
+    }
+    
 }
 

@@ -20,6 +20,8 @@ export class HomeController {
         this.view = view;
     }
 
+    
+
     onClickNewGameButton() {
         this.model.newGame();
         this.view.render();
