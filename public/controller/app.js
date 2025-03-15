@@ -12,7 +12,7 @@ import { HistoryController } from './HistoryController.js';
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
 document.getElementById('appHeader').textContent = "Dice Roll Game";
-document.title = "App Template";
+document.title = "Dice Game";
 
 const routes = [
     { path: '/', view: HomeView, controller: HomeController },
